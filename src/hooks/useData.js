@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 function useData() {
   const [info, setInfo] = useState([]);
   const [loading, setLoadng] = useState(false);
+  const [control, setControl] = useState('');
+  const [docs, setDocs] = useState([]);
 
   const url = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
@@ -11,9 +13,14 @@ function useData() {
     const getResults = async () => {
       await fetch(url)
         .then((resopnse) => resopnse.json())
-        .then((data) => {
-          setInfo(data.results);
+        .then(({ results }) => {
+          const treatedResults = results.reduce((acc, curr) => {
+            const { residents, ...obj } = curr;
+            return [...acc, obj];
+          }, []);
+          setInfo(treatedResults);
           setLoadng(false);
+          setDocs(treatedResults);
         });
     };
     getResults();
@@ -21,7 +28,12 @@ function useData() {
 
   return {
     info,
+    setInfo,
     loading,
+    control,
+    setControl,
+    docs,
+    setDocs,
   };
 }
 

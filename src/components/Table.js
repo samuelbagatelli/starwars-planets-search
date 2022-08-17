@@ -2,22 +2,41 @@ import React, { useContext } from 'react';
 import Context from '../context';
 
 function Table() {
-  const { info, loading } = useContext(Context);
+  const { info, loading, control, setControl, docs, setDocs } = useContext(Context);
   let tableHeads = [];
-  const results = info.reduce((acc, curr) => {
-    const { residents, ...obj } = curr;
-    return [...acc, obj];
-  }, []);
 
-  if (results[0] !== undefined) {
-    tableHeads = Object.keys(results[0]);
+  if (info[0] !== undefined) {
+    tableHeads = Object.keys(info[0]);
   }
+
+  const handleChange = (value) => {
+    const filter = info.filter((element) => {
+      const name = element.name.toLowerCase();
+      const includes = name.includes(value);
+      return includes;
+    });
+    setDocs(filter);
+  };
 
   return (
     <main>
-      <h1>
-        {loading && 'Carregando...'}
-      </h1>
+      {loading && (<h1>Carregando...</h1>)}
+      <form>
+        <label htmlFor="search">
+          Pesquisa:
+          {' '}
+          <input
+            name="search"
+            type="text"
+            data-testid="name-filter"
+            onChange={ ({ target }) => {
+              setControl(target.value);
+              handleChange(target.value);
+            } }
+            value={ control }
+          />
+        </label>
+      </form>
       <table>
         <thead>
           <tr>
@@ -33,7 +52,7 @@ function Table() {
           </tr>
         </thead>
         <tbody>
-          {results.map((element, index) => {
+          {docs.map((element, index) => {
             const data = Object.values(element);
             return (
               <tr key={ index }>
