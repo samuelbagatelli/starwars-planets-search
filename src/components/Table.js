@@ -9,6 +9,10 @@ function Table() {
     setFormControl,
     docs,
     setDocs,
+    filters,
+    setFilters,
+    clicked,
+    setClicked,
   } = useContext(Context);
 
   let tableHeads = [];
@@ -46,7 +50,8 @@ function Table() {
 
   const handleClick = () => {
     const { column, operator, parameter } = formControl;
-    const filter = info.filter((element) => {
+    const check = docs.length !== 0 ? docs : info;
+    const filter = check.filter((element) => {
       switch (operator) {
       case 'menor que':
         return Number(element[column]) < parameter;
@@ -57,6 +62,8 @@ function Table() {
       }
     });
     setDocs(filter);
+    setFilters((prevState) => ([...prevState, formControl]));
+    setClicked(true);
   };
 
   return (
@@ -125,6 +132,14 @@ function Table() {
           Filtrar
         </button>
       </form>
+      {clicked
+        && filters.map((element, idx) => (
+          <section key={ idx }>
+            <span>{element.column}</span>
+            <span>{element.operator}</span>
+            <span>{element.parameter}</span>
+          </section>
+        ))}
       <table>
         <thead>
           <tr>

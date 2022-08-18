@@ -11,6 +11,8 @@ function useData() {
     },
   );
   const [docs, setDocs] = useState([]);
+  const [filters, setFilters] = useState([]);
+  const [clicked, setClicked] = useState(false);
 
   const url = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
@@ -40,6 +42,10 @@ function useData() {
     setFormControl,
     docs,
     setDocs,
+    filters,
+    setFilters,
+    clicked,
+    setClicked,
   };
 }
 
