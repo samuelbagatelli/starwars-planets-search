@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
 
 function useData() {
+  const filter = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
   const [info, setInfo] = useState([]);
   const [loading, setLoadng] = useState(false);
   const [formControl, setFormControl] = useState(
@@ -13,6 +20,7 @@ function useData() {
   const [docs, setDocs] = useState([]);
   const [filters, setFilters] = useState([]);
   const [clicked, setClicked] = useState(false);
+  const [toFilter, setToFilter] = useState(filter);
 
   const url = 'https://swapi-trybe.herokuapp.com/api/planets/';
 
@@ -46,6 +54,8 @@ function useData() {
     setFilters,
     clicked,
     setClicked,
+    toFilter,
+    setToFilter,
   };
 }
 

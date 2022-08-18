@@ -13,17 +13,11 @@ function Table() {
     setFilters,
     clicked,
     setClicked,
+    toFilter,
+    setToFilter,
   } = useContext(Context);
 
   let tableHeads = [];
-
-  const toFilter = [
-    'population',
-    'orbital_period',
-    'diameter',
-    'rotation_period',
-    'surface_water',
-  ];
 
   if (info[0] !== undefined) {
     tableHeads = Object.keys(info[0]);
@@ -64,6 +58,7 @@ function Table() {
     setDocs(filter);
     setFilters((prevState) => ([...prevState, formControl]));
     setClicked(true);
+    setToFilter((prevState) => prevState.filter((element) => element !== column));
   };
 
   return (
