@@ -142,7 +142,7 @@ function Table() {
         ))}
       <table>
         <thead>
-          <tr>
+          <tr data-testid="table-header">
             {tableHeads.map((element, idx) => {
               const maintence = element.charAt(0).toUpperCase() + element.slice(1);
               const heads = maintence.replace('_', ' ');
