@@ -3,7 +3,13 @@ import { useState, useEffect } from 'react';
 function useData() {
   const [info, setInfo] = useState([]);
   const [loading, setLoadng] = useState(false);
-  const [control, setControl] = useState('');
+  const [formControl, setFormControl] = useState(
+    {
+      column: 'population',
+      operator: 'maior que',
+      parameter: 0,
+    },
+  );
   const [docs, setDocs] = useState([]);
 
   const url = 'https://swapi-trybe.herokuapp.com/api/planets/';
@@ -30,8 +36,8 @@ function useData() {
     info,
     setInfo,
     loading,
-    control,
-    setControl,
+    formControl,
+    setFormControl,
     docs,
     setDocs,
   };

@@ -2,18 +2,59 @@ import React, { useContext } from 'react';
 import Context from '../context';
 
 function Table() {
-  const { info, loading, control, setControl, docs, setDocs } = useContext(Context);
+  const {
+    info,
+    loading,
+    formControl,
+    setFormControl,
+    docs,
+    setDocs,
+  } = useContext(Context);
+
   let tableHeads = [];
+
+  const toFilter = [
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ];
 
   if (info[0] !== undefined) {
     tableHeads = Object.keys(info[0]);
   }
+
+  const updateFormControl = (target) => {
+    const { name, value } = target;
+    setFormControl((prevState) => (
+      {
+        ...prevState,
+        [name]: value,
+      }
+    ));
+  };
 
   const handleChange = (value) => {
     const filter = info.filter((element) => {
       const name = element.name.toLowerCase();
       const includes = name.includes(value);
       return includes;
+    });
+    setDocs(filter);
+  };
+
+  const handleClick = () => {
+    const { column, operator, parameter } = formControl;
+    const filter = info.filter((element) => {
+      switch (operator) {
+      case 'menor que':
+        return Number(element[column]) < parameter;
+      case 'igual a':
+        return Number(element[column]) === Number(parameter);
+      default:
+        return Number(element[column]) > parameter;
+      }
     });
     setDocs(filter);
   };
@@ -30,12 +71,59 @@ function Table() {
             type="text"
             data-testid="name-filter"
             onChange={ ({ target }) => {
-              setControl(target.value);
+              updateFormControl(target);
               handleChange(target.value);
             } }
-            value={ control }
+            value={ formControl.search }
           />
         </label>
+        <label htmlFor="column">
+          Coluna:
+          {' '}
+          <select
+            name="column"
+            onChange={ ({ target }) => updateFormControl(target) }
+            value={ formControl.column }
+            data-testid="column-filter"
+          >
+            {toFilter.map((element, idx) => (
+              <option
+                key={ idx }
+                value={ element }
+              >
+                {element}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="operator">
+          Operador:
+          {' '}
+          <select
+            name="operator"
+            onChange={ ({ target }) => updateFormControl(target) }
+            value={ formControl.operator }
+            data-testid="comparison-filter"
+          >
+            <option value="maior que">maior que</option>
+            <option value="menor que">menor que</option>
+            <option value="igual a">igual a</option>
+          </select>
+        </label>
+        <input
+          type="number"
+          name="parameter"
+          onChange={ ({ target }) => updateFormControl(target) }
+          value={ formControl.parameter }
+          data-testid="value-filter"
+        />
+        <button
+          type="button"
+          onClick={ handleClick }
+          data-testid="button-filter"
+        >
+          Filtrar
+        </button>
       </form>
       <table>
         <thead>
