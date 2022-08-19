@@ -34,18 +34,18 @@ function Table() {
   };
 
   const handleChange = (value) => {
-    const filter = info.filter((element) => {
+    const infoFilter = info.filter((element) => {
       const name = element.name.toLowerCase();
       const includes = name.includes(value);
       return includes;
     });
-    setDocs(filter);
+    setDocs(infoFilter);
   };
 
   const handleClick = () => {
     const { column, operator, parameter } = formControl;
     const check = docs.length !== 0 ? docs : info;
-    const filter = check.filter((element) => {
+    const checkFilter = check.filter((element) => {
       switch (operator) {
       case 'menor que':
         return Number(element[column]) < parameter;
@@ -55,10 +55,17 @@ function Table() {
         return Number(element[column]) > parameter;
       }
     });
-    setDocs(filter);
+    setDocs(checkFilter);
     setFilters((prevState) => ([...prevState, formControl]));
     setClicked(true);
-    setToFilter((prevState) => prevState.filter((element) => element !== column));
+    setToFilter((innerState) => {
+      const funciona = innerState.filter((element) => element !== column);
+      setFormControl((prevState) => ({
+        ...prevState,
+        column: funciona[0],
+      }));
+      return funciona;
+    });
   };
 
   return (
