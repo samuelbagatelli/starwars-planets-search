@@ -5,6 +5,8 @@ import App from '../App';
 import Provider from '../context/Provider';
 import testData from '../../cypress/mocks/testData';
 
+const ROWS_NUMBER = 11;
+
 describe('It tests the full application', () => {
   const api = () => {
     globalThis.fetch = jest.fn(() => Promise.resolve({
@@ -33,8 +35,6 @@ describe('It tests the full application', () => {
       </Provider>,
     );
 
-    const ROWS_NUMBER = 11;
-
     await waitFor(() => {
       const teste = screen.getAllByRole('row');
       expect(teste).toHaveLength(ROWS_NUMBER);
@@ -48,5 +48,25 @@ describe('It tests the full application', () => {
 
     const planetName = await screen.findByRole('cell', { name: /tatooine/i });
     expect(planetName).toBeInTheDocument();
+  });
+
+  it('tests if the filter button works correctly', async () => {
+    render(
+      <Provider>
+        <App />
+      </Provider>,
+    );
+
+    await waitFor(() => {
+      const teste = screen.getAllByRole('row');
+      expect(teste).toHaveLength(ROWS_NUMBER);
+    });
+
+    const filterButton = screen.getByRole('button', { name: /filtrar/i });
+    expect(filterButton).toBeInTheDocument();
+
+    userEvent.click(filterButton);
+    const columnFilter = screen.getByText('population');
+    expect(columnFilter).toBeInTheDocument();
   });
 });
