@@ -28,7 +28,7 @@ function useData() {
     setLoadng(true);
     const getResults = async () => {
       await fetch(url)
-        .then((resopnse) => resopnse.json())
+        .then((response) => response.json())
         .then(({ results }) => {
           const treatedResults = results.reduce((acc, curr) => {
             const { residents, ...obj } = curr;

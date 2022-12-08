@@ -21,6 +21,7 @@ function Table() {
 
   if (info[0] !== undefined) {
     tableHeads = Object.keys(info[0]);
+    console.log(tableHeads);
   }
 
   const updateFormControl = (target) => {
@@ -70,7 +71,16 @@ function Table() {
 
   return (
     <main>
-      {loading && (<h1>Carregando...</h1>)}
+      {loading && (
+        <>
+          <h1>
+            API SERVICE UNAVAILABLE
+          </h1>
+          <h2>
+            DATABASE IN CONSTRUCTION
+          </h2>
+        </>
+      )}
       <form>
         <label htmlFor="search">
           Pesquisa:
