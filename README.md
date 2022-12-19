@@ -91,7 +91,7 @@ Caso tenha sugestões de melhoria para a aplicação, sinta-se a vontade para:
 
 Para rodar os testes, basta executar o comando: `npm test`
 
-Caso queira rodar um teste em específico, execute o comando: ``
+<br />
 
 # Créditos:
 
