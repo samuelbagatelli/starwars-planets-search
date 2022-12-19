@@ -9,6 +9,7 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
 # Este é o repositório do projeto Star Wars Planet Search!
+  _repositório baseado em sistemas operacionais Linux_
 
 ![img](projectIntro.gif)
 
@@ -86,6 +87,12 @@ Caso tenha sugestões de melhoria para a aplicação, sinta-se a vontade para:
 
 <br />
 
+# Executando testes
+
+Para rodar os testes, basta executar o comando: `npm test`
+
+Caso queira rodar um teste em específico, execute o comando: ``
+
 # Créditos:
 
 <details>
@@ -99,5 +106,5 @@ Caso tenha sugestões de melhoria para a aplicação, sinta-se a vontade para:
 <details>
   <summary><strong>Desenvolvido pela Trybe:</strong></summary><br />
 
-  Toda a parte de configuração de ambiente, _setup_ e testes de requisito da aplicação foi desenvolvida pelo time da Trybe.
+  Toda a parte de configuração de ambiente e _setup_ da aplicação foi desenvolvida pelo time da Trybe.
 </details>
