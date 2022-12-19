@@ -29,12 +29,10 @@ __Caso queira acessar a aplicação em funcionamento:__ <https://starwars-planet
 
   Para verificar se você possui o NPM, basta digitar este comando no terminal:
 
-  <code>
+      npm -v
 
-    npm -v
-
-    // O retorno de ser algo parecido com: 9.2.0
-  </code>
+      // O retorno de ser algo parecido com: 9.2.0
+  
 
   __Caso não esteja instalado, basta seguir as instruções:__ <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>
 </details>
@@ -47,13 +45,11 @@ __Caso queira acessar a aplicação em funcionamento:__ <https://starwars-planet
   Certifique-se de instalar (caso não possua) o git Command Line Interface no seu computador.
 
   Para verificar se você possui o git, basta digitar este comando no terminal:
+  
+      git --version
 
-  <code>
-
-    git --version
-
-    // O retorno de ser algo parecido com: git version 2.25.1
-  </code>
+      // O retorno de ser algo parecido com: git version 2.25.1
+  
 
   __Caso não esteja instalado, basta seguir as instruções:__ <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>
 </details>
@@ -87,3 +83,21 @@ Caso tenha sugestões de melhoria para a aplicação, sinta-se a vontade para:
 
   - Ou me mandar uma mensagem com as ideias que você teve:
     - __email:__ <contato.samuelbagatelli@gmail.com>
+
+<br />
+
+# Créditos:
+
+<details>
+  <summary><strong>Desenvolvido por mim:</strong></summary><br />
+
+  Todos os componentes, Hooks, testes de integração, parte lógica e visual da aplicação foram desenvolvidos por mim.
+</details>
+
+<br />
+
+<details>
+  <summary><strong>Desenvolvido pela Trybe:</strong></summary><br />
+
+  Toda a parte de configuração de ambiente, _setup_ e testes de requisito da aplicação foi desenvolvida pelo time da Trybe.
+</details>
