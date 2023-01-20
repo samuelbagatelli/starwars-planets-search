@@ -22,7 +22,7 @@ function useData() {
   const [clicked, setClicked] = useState(false);
   const [toFilter, setToFilter] = useState(filter);
 
-  const url = 'https://swapi-trybe.herokuapp.com/api/planets/';
+  const url = 'https://swapi.dev/api/planets/';
 
   useEffect(() => {
     setLoadng(true);

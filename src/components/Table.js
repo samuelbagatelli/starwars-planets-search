@@ -71,16 +71,7 @@ function Table() {
 
   return (
     <main>
-      {loading && (
-        <>
-          <h1>
-            API SERVICE UNAVAILABLE
-          </h1>
-          <h2>
-            DATABASE IN CONSTRUCTION
-          </h2>
-        </>
-      )}
+      { loading && <p>Loading...</p>}
       <form>
         <label htmlFor="search">
           Pesquisa:
