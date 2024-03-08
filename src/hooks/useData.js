@@ -12,6 +12,7 @@ function useData() {
   const [loading, setLoadng] = useState(false);
   const [formControl, setFormControl] = useState(
     {
+      search: '',
       column: 'population',
       operator: 'maior que',
       parameter: 0,
@@ -22,18 +23,23 @@ function useData() {
   const [clicked, setClicked] = useState(false);
   const [toFilter, setToFilter] = useState(filter);
 
-  const url = 'https://swapi.dev/api/planets/';
+  const site = 'https://swapi.dev/api/planets/';
+  // const site = 'https://anapioficeandfire.com/api/books';
 
   useEffect(() => {
     setLoadng(true);
     const getResults = async () => {
-      await fetch(url)
+      await fetch(site)
         .then((response) => response.json())
-        .then(({ results }) => {
+        .then((/* books */ { results }) => {
           const treatedResults = results.reduce((acc, curr) => {
             const { residents, ...obj } = curr;
             return [...acc, obj];
           }, []);
+          // const treatedResults = books.reduce((acc, curr) => {
+          //   const { url, characters, povCharacters, ...obj } = curr;
+          //   return [...acc, obj];
+          // }, []);
           setInfo(treatedResults);
           setLoadng(false);
           setDocs(treatedResults);

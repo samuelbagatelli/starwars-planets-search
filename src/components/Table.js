@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import './Table.css';
 import Context from '../context';
 
 function Table() {
@@ -72,12 +73,12 @@ function Table() {
   return (
     <main>
       { loading && <p>Loading...</p>}
-      <form>
+      <h4>pesquisa:</h4>
+      <form name="form">
         <label htmlFor="search">
-          Pesquisa:
-          {' '}
+          nome:
           <input
-            name="search"
+            id="search"
             type="text"
             data-testid="name-filter"
             onChange={ ({ target }) => {
@@ -88,10 +89,9 @@ function Table() {
           />
         </label>
         <label htmlFor="column">
-          Coluna:
-          {' '}
+          coluna:
           <select
-            name="column"
+            id="column"
             onChange={ ({ target }) => updateFormControl(target) }
             value={ formControl.column }
             data-testid="column-filter"
@@ -107,10 +107,9 @@ function Table() {
           </select>
         </label>
         <label htmlFor="operator">
-          Operador:
-          {' '}
+          operador:
           <select
-            name="operator"
+            id="operator"
             onChange={ ({ target }) => updateFormControl(target) }
             value={ formControl.operator }
             data-testid="comparison-filter"
@@ -127,13 +126,7 @@ function Table() {
           value={ formControl.parameter }
           data-testid="value-filter"
         />
-        <button
-          type="button"
-          onClick={ handleClick }
-          data-testid="button-filter"
-        >
-          Filtrar
-        </button>
+        <button type="button" onClick={ handleClick }>Filtrar</button>
       </form>
       {clicked
         && filters.map((element, idx) => (

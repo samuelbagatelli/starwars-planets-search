@@ -1,19 +1,9 @@
-<!-- # :construction: README em construção ! :construction: -->
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
 # Este é o repositório do projeto Star Wars Planet Search!
-  _repositório baseado em sistemas operacionais Linux_
+  _Repositório baseado em sistemas operacionais Linux_
 
 ![img](projectIntro.gif)
 
-Esse foi um projeto realizado durante o curso da Trybe, onde a proposta foi desenvolver uma tabela com filtros, que apresente os diversos planetas do universo de Star Wars.
+Esse foi um projeto realizado durante o curso de Desenvolvimento Web da Trybe, onde a proposta foi desenvolver uma tabela com filtros, que apresente os diversos planetas do universo de Star Wars.
 
 A aplicação utiliza __Conxtext API__ e __React Hooks__ para controlar os estados globais.
 
