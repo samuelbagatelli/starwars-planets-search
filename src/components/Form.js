@@ -117,7 +117,7 @@ function Form() {
         />
       </label>
 
-      <button type="button" onClick={ handleClick }>
+      <button type="button" onClick={ handleClick } className="submit-button">
         FILTER
       </button>
     </form>

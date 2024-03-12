@@ -19,8 +19,8 @@ function Table() {
   return (
     <main>
       { loading && <p>LOADING...</p>}
-      <div>
-        <h4>SEARCH:</h4>
+      <div className="container">
+        <h4 className="heading">SEARCH:</h4>
         <Form />
       </div>
       {clicked

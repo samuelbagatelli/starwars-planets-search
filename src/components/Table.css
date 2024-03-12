@@ -1,12 +1,78 @@
+:root {
+    --btn-color: rgb(127, 184, 139);
+}
+
 td {
     text-align: center;
 }
 
+.container {
+    margin: 4vh 0;
+}
+
+.heading {
+    margin: 1em .5em .3em;
+}
+
 .search-form {
     display: flex;
-    flex-direction: column;
-    align-items: space-between;
-    /* justify-content: space-between; */
+    justify-content: space-around;
     padding: 1em;
-    border: 1px solid red;
+    z-index: -2;
+}
+
+button,
+button::after {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+button {
+    background: none;
+    border: 1px solid var(--btn-color);
+    color: var(--btn-color);
+    /* border-radius: 5px; */
+    display: block;
+    font-size: .9em;
+    font-weight: bold;
+    padding: 1em 2em;
+    position: relative;
+    text-transform: uppercase;
+}
+
+button::before,
+button::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+}
+
+button:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.submit-button {
+    width: 150px;
+    height: 50px;
+
+    overflow: hidden;
+}
+
+.submit-button::after {
+    background-color: var(--btn-color);
+    height: 100%;
+    left: -35%;
+    top: 0;
+    transform: skew(50deg);
+    transition-duration: 0.6s;
+    transform-origin: top left;
+    width: 0;
+}
+
+.submit-button:hover::after {
+    height: 100%;
+    width: 135%;
 }
