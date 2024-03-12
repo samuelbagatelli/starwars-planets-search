@@ -1,153 +1,50 @@
 import React, { useContext } from 'react';
 import './Table.css';
 import Context from '../context';
+import Form from './Form';
 
 function Table() {
   const {
     info,
     loading,
-    formControl,
-    setFormControl,
     docs,
-    setDocs,
     filters,
-    setFilters,
     clicked,
-    setClicked,
-    toFilter,
-    setToFilter,
   } = useContext(Context);
 
   let tableHeads = [];
 
-  if (info[0] !== undefined) {
-    tableHeads = Object.keys(info[0]);
-    console.log(tableHeads);
-  }
-
-  const updateFormControl = (target) => {
-    const { name, value } = target;
-    setFormControl((prevState) => (
-      {
-        ...prevState,
-        [name]: value,
-      }
-    ));
-  };
-
-  const handleChange = (value) => {
-    const infoFilter = info.filter((element) => {
-      const name = element.name.toLowerCase();
-      const includes = name.includes(value);
-      return includes;
-    });
-    setDocs(infoFilter);
-  };
-
-  const handleClick = () => {
-    const { column, operator, parameter } = formControl;
-    const check = docs.length !== 0 ? docs : info;
-    const checkFilter = check.filter((element) => {
-      switch (operator) {
-      case 'menor que':
-        return Number(element[column]) < parameter;
-      case 'igual a':
-        return Number(element[column]) === Number(parameter);
-      default:
-        return Number(element[column]) > parameter;
-      }
-    });
-    setDocs(checkFilter);
-    setFilters((prevState) => ([...prevState, formControl]));
-    setClicked(true);
-    setToFilter((innerState) => {
-      const funciona = innerState.filter((element) => element !== column);
-      setFormControl((prevState) => ({
-        ...prevState,
-        column: funciona[0],
-      }));
-      return funciona;
-    });
-  };
+  if (info[0] !== undefined) { tableHeads = Object.keys(info[0]); }
 
   return (
     <main>
-      { loading && <p>Loading...</p>}
-      <h4>pesquisa:</h4>
-      <form name="form">
-        <label htmlFor="search">
-          nome:
-          <input
-            id="search"
-            type="text"
-            data-testid="name-filter"
-            onChange={ ({ target }) => {
-              updateFormControl(target);
-              handleChange(target.value);
-            } }
-            value={ formControl.search }
-          />
-        </label>
-        <label htmlFor="column">
-          coluna:
-          <select
-            id="column"
-            onChange={ ({ target }) => updateFormControl(target) }
-            value={ formControl.column }
-            data-testid="column-filter"
-          >
-            {toFilter.map((element, idx) => (
-              <option
-                key={ idx }
-                value={ element }
-              >
-                {element}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="operator">
-          operador:
-          <select
-            id="operator"
-            onChange={ ({ target }) => updateFormControl(target) }
-            value={ formControl.operator }
-            data-testid="comparison-filter"
-          >
-            <option value="maior que">maior que</option>
-            <option value="menor que">menor que</option>
-            <option value="igual a">igual a</option>
-          </select>
-        </label>
-        <input
-          type="number"
-          name="parameter"
-          onChange={ ({ target }) => updateFormControl(target) }
-          value={ formControl.parameter }
-          data-testid="value-filter"
-        />
-        <button type="button" onClick={ handleClick }>Filtrar</button>
-      </form>
+      { loading && <p>LOADING...</p>}
+      <div>
+        <h4>SEARCH:</h4>
+        <Form />
+      </div>
       {clicked
         && filters.map((element, idx) => (
           <section key={ idx }>
-            <span>{element.column}</span>
-            <span>{element.operator}</span>
-            <span>{element.parameter}</span>
+            <span>
+              {element.column.toUpperCase()}
+              {' '}
+            </span>
+            <span>
+              {element.operator.toUpperCase()}
+              {' '}
+            </span>
+            <span>{element.parameter.toUpperCase()}</span>
           </section>
         ))}
       <table>
         <thead>
           <tr data-testid="table-header">
-            {tableHeads.map((element, idx) => {
-              const maintence = element.charAt(0).toUpperCase() + element.slice(1);
-              const heads = maintence.replace('_', ' ');
-              return (
-                <th key={ idx }>
-                  {heads}
-                </th>
-              );
-            })}
+            {tableHeads.map((element, idx) => (
+              <th key={ idx }>
+                {element.replace('_', ' ').toUpperCase()}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
